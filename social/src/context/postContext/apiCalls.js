@@ -23,6 +23,7 @@ try{
        }
    })
    dispatch(addpostSuccess(res.data))
+   return res.data
 }catch(e){
     dispatch(addpostFailure(e))
 }

@@ -9,7 +9,7 @@ router.post("/", verifyToken, async (req, res)=>{
     const newpost = new Post({...req.body, userId: req.user.id});
     try{
        const savedPost = await newpost.save()
-       res.status(200).json(savedPost);
+       return res.status(201).json(savedPost);
     }catch(e){
         return res.status(500).json({"error": "server error"})
     }
@@ -34,7 +34,6 @@ router.put("/:id", verifyToken, async (req, res)=>{
 router.delete("/:id/:userId", async (req, res)=>{
     try{
        const post = await Post.findById(req.params.id);
-       console.log(post)
        if(post.userId === req.params.userId){
            const deletedPost = await post.deleteOne();
            return res.status(200).json("Post has been Deleted");

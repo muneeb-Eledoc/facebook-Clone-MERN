@@ -4,15 +4,16 @@ import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../context/authContext/AuthContext"
+import Friends from './friends/Friends';
 export default function Sidebar() {
-    const { user } = useContext(AuthContext)
+    const { user, showSideBar } = useContext(AuthContext)
     const navigate = useNavigate()
     const handleLogout = ()=>{
        localStorage.removeItem("token")
        navigate("/login")
     } 
     return (
-        <div className="sideBar"> 
+        <div className={`sideBar ${showSideBar&&'show__sidebar'}`}> 
             <div className="sideBarWrapper">
             <ul className="sidebarList">
                     <li className="sidebarlistItem">
@@ -62,72 +63,21 @@ export default function Sidebar() {
                          </span>
                     </li>
                     <li className="sidebarlistItem">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em"><g fill-rule="evenodd" transform="translate(-448 -544)"><path fill-rule="nonzero" d="M452.707 549.293a1 1 0 0 0-1.414 1.414l4 4a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L456 552.586l-3.293-3.293z"/></g></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em"><g fillRule="evenodd" transform="translate(-448 -544)"><path fillRule="nonzero" d="M452.707 549.293a1 1 0 0 0-1.414 1.414l4 4a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L456 552.586l-3.293-3.293z"/></g></svg>
                          <span className="sidebarlistItemText">
                              Show More
                          </span>                    
                     </li>
                     <li className="sidebarlistItem">
-                    <Button startIcon={<LogoutIcon />} onClick={handleLogout}>
+                    <Button startIcon={<LogoutIcon />} variant='danger' onClick={handleLogout}>
                         Log out
                     </Button>
                     </li>
                 </ul>
-                <hr />
-                <ul className="sidebarListFriends">
-                    <li className="sidebarlistItem">
-                         <Avatar className="sidebarIcon"
-                            alt="Remy Sharp"
-                            src="https://cdn.pixabay.com/photo/2021/04/05/12/38/man-6153295_960_720.jpg"
-                            sx={{ width: 40, height: 40 }}
-                        />
-                         <span className="sidebarlistItemText">
-                           Ali Rana
-                         </span>
-                    </li>
-                    <li className="sidebarlistItem">
-                         <Avatar className="sidebarIcon"
-                            alt="Remy Sharp"
-                            src="https://cdn.pixabay.com/photo/2021/04/05/12/38/man-6153295_960_720.jpg"
-                            sx={{ width: 40, height: 40 }}
-                        />
-                         <span className="sidebarlistItemText">
-                           Clay
-                         </span>
-                    </li>  
-                          <li className="sidebarlistItem">
-                         <Avatar className="sidebarIcon"
-                            alt="Remy Sharp"
-                            src="https://cdn.pixabay.com/photo/2021/04/05/12/38/man-6153295_960_720.jpg"
-                            sx={{ width: 40, height: 40 }}
-                        />
-                         <span className="sidebarlistItemText">
-                           Jane Roy
-                         </span>
-                    </li>
-                    <li className="sidebarlistItem">
-                         <Avatar className="sidebarIcon"
-                            alt="Remy Sharp"
-                            src="https://cdn.pixabay.com/photo/2021/04/05/12/38/man-6153295_960_720.jpg"
-                            sx={{ width: 40, height: 40 }}
-                        />
-                         <span className="sidebarlistItemText">
-                           Jane Roy
-                         </span>
-                    </li>
-                    <li className="sidebarlistItem">
-                         <Avatar className="sidebarIcon"
-                            alt="Remy Sharp"
-                            src="https://cdn.pixabay.com/photo/2021/04/05/12/38/man-6153295_960_720.jpg"
-                            sx={{ width: 40, height: 40 }}
-                        />
-                         <span className="sidebarlistItemText">
-                           Jane Roy
-                         </span>
-                    </li>
-
-                </ul>
-                <hr />
+                <div className='divider' ></div>
+                <h3 className='followings__head'>Followings</h3>
+                    <Friends />
+                <span className='divider' ></span>
             </div>
         </div>
     )

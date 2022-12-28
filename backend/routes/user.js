@@ -15,7 +15,6 @@ router.post("/:id", verifyToken, async (req, res)=>{
           }
        }
        try{
-         console.log(req.user.id)
            const updated_user = await User.findByIdAndUpdate(req.params.id, {$set: req.body});
           return res.status(200).send({"success": "Account has been updated."})
     }catch(e){
@@ -74,9 +73,9 @@ router.get("/", async (req, res)=>{
 });
 
  //get friends
-router.get("/friends/:userId", async (req, res) => {
+router.get("/friends", verifyToken, async (req, res) => {
     try {
-      const user = await User.findById(req.params.userId);
+      const user = await User.findById(req.user.id);
       const friends = await Promise.all(
         user.followins.map((friendId) => {
           return User.findById(friendId);

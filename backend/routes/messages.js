@@ -16,9 +16,21 @@ router.post("/", async (req, res)=>{
 router.get("/:conversationId", async (req, res)=>{
     try{
         const messages = await Message.find({
-            conversarionId: req.params.conversationId
+            conversationId: req.params.conversationId
         })
         return res.status(200).json(messages);    
+     }catch(e){
+     return res.status(500).json(e)
+     }
+
+})
+
+router.get("/lastmessage/:conversationId", async (req, res)=>{
+    try{
+        const messages = await Message.find({
+            conversationId: req.params.conversationId
+        }).sort({_id: -1}).limit(1)
+        return res.status(200).json(messages[0]);    
      }catch(e){
      return res.status(500).json(e)
      }

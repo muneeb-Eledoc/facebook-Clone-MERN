@@ -1,144 +1,308 @@
-.messenger{
+.wrapper {
+    background-color: whitesmoke;
+}
+
+.messenger {
     display: flex;
+    margin: 0px auto;
     overflow: hidden;
+    width: 100%;
+    @media screen and(min-width: 1200px) {
+        width: 84%;
+    }
     height: calc(100vh - 60px);
-    .chatMenu{
-        flex: 3.5;
+    gap: 5px;
+    .chatMenu {
+        flex: 2.3;
         overflow-y: auto;
         position: sticky;
-        border-right: 1px solid lightgray;
-        background-color: rgb(109, 124, 253);
+        background-color: white;
         display: flex;
         align-items: center;
         flex-direction: column;
-        @media screen and(max-width: 1000px) {
+
+        @media screen and(max-width: 700px) {
             display: none;
         }
-        input{
+
+        input {
             width: 300px;
             margin-top: 10px;
             border-radius: 20px;
-            padding: 10px 14px;
+            padding: 12px 14px;
             font-size: 17px;
             outline: none;
             border: none;
+            background-color: whitesmoke;
+            margin-bottom: 10px;
         }
-    }   
-    .chatConversations{
-        flex: 5;
-        background-color: rgb(247, 247, 247);
     }
-    .chatConversationsWrappper{
+
+    .chatConversations {
+        flex: 5;
+        background-color: white;
+    }
+
+    .chatConversationsWrappper {
         display: flex;
         justify-content: space-between;
         flex-direction: column;
         height: 100%;
-        .chatBoxTop{
+
+        .chatBoxTop {
             flex: 9;
             overflow-y: scroll;
             padding: 0px 10px;
         }
     }
-    .chatOnline{
+
+    .chatOnline {
         flex: 3;
+        background-color: white;
+
         @media screen and(max-width: 1000px) {
             display: none;
         }
 
     }
-    .conversation{
+
+    .conversation {
         display: flex;
-        margin: 10px 0px;
+        margin: 0px;
         align-items: center;
-        padding: 10px;
-        border-radius: 20px;
+        padding: 14px 5px;
+        border-radius: 10px;
         cursor: pointer;
-        background-color: rgba(0, 0, 0, 0.203);
-        &:hover{
-            background-color: rgb(232, 232, 232);
+        box-shadow: 0.4px 1px 2px rgba(7, 7, 7, 0.040);
+        margin-top: 6px;
+        position: relative;
+        .online__indicator{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgb(7, 218, 35);
+            z-index: 50;
+            border: 2px solid white;
         }
-        img{
+        &:hover {
+            background-color: rgba(49, 49, 49, 0.040);
+        }
+        .conversation__info{
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        &.active{
+            background-color: rgba(49, 49, 49, 0.050);
+            box-shadow: 0.7px 1.4px  rgba(7, 7, 7, 0.090);
+        }
+        img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
             margin-right: 10px;
+            z-index: 30;
         }
-        span{
-            font-weight: 900;
+        span {
+            color: rgb(116, 116, 116);
+            font-weight: 600;
+        }
+        .last__message{
+            color: gray;
+            font-size: 15px;
+            font-weight: 500;
+            margin-top: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+        .time__stamp{
+            font-size: 12px;
+            font-weight: 400;
+            color: rgb(145, 145, 145);
+            margin-top: 3px;
         }
     }
-    .chatBoxBottom{
+
+    .chatBoxBottom {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex: 0.5;
-        margin: 2px;
+        margin: 8px;
         border-radius: 20px;
-        border: 1px solid #444;
-        .messageTextInput{
-            padding: 10px;
-            width: 90%;
-            height: 20px;
+        height: 42px;
+        background-color: rgb(245, 245, 245);
+        border-radius: 20px;
+
+        .messageTextInput {
+            padding-left: 12px;
+            background: none;
+            flex: 1;
+            padding-top: 12px;
             font-size: 16px;
             outline: none;
-            border-radius: 20px;
             border: none;
         }
-        button{
+
+        button {
             padding: 10px;
             cursor: pointer;
-            border-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
             height: 42px;
             background-color: blueviolet;
             color: white;
             font-weight: 500;
             font-size: 16px;
             border: none;
+            transition: all .3s;
+
+            &:active {
+                background-color: whitesmoke;
+                color: #444;
+            }
         }
     }
 }
-.message{
+
+.message {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
-    .messageTop{
+
+    .messageTop {
         display: flex;
         align-items: center;
-        img{
+
+        img {
             width: 40px;
             height: 40px;
             margin-right: 10px;
             border-radius: 50%;
             object-fit: cover;
         }
-        p{
+
+        p {
+            margin: 0;
             background-color: rgb(217, 77, 252);
-            border-bottom-right-radius: 25px;
-            border-top-left-radius: 25px;
-            border: 1px solid rgba(0, 139, 139, 0.203);
+            border-radius: 28px;
             max-width: 300px;
-            padding: 10px;
+            padding: 12px 18px;
             color: white;
             font-weight: 500;
         }
     }
-    .messageBottom{
+
+    .messageBottom {
         font-size: 12px;
         color: gray;
         font-weight: 500;
+        margin-top: 5px;
     }
 }
-.message.own{
-   align-items: flex-end;
-   p{
-       background-color: rgba(211, 211, 211, 0.550);
-       color: black;
-   }
+
+.message.own {
+    align-items: flex-end;
+
+    p {
+        background-color: rgba(243, 243, 243, 0.55);
+        color: black;
+    }
 }
-.defaultMessage{
+
+.defaultMessage {
     font-size: 30px;
     margin: 20px;
     font-weight: 600;
     color: #444;
+}
+
+.shadow {
+    box-shadow: 1px 2px 3px rgb(233, 233, 233);
+}
+
+.active__now{
+    padding: 1px;
+    border: 2px solid rgb(7, 218, 35);
+    box-shadow: 0 0 2px rgb(7, 218, 35);
+}
+.default__message{
+    color: rgb(68, 68, 68);
+    font-weight: 500;
+    font-size: 17px;
+    text-align: center;
+    background-color: whitesmoke;
+    padding: 8px;
+    border-radius: 30px;
+    margin: auto;
+    margin-top: 16px;
+    box-shadow: 1px 2px 1px whitesmoke;
+    margin-bottom: 10px;
+}
+.recipient_profile{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    img{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 1px 2px 5px rgba(128, 128, 128, 0.781);
+    }
+}
+
+.typing__status{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    margin-top: 14px;
+    img{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 1px 2px 5px rgba(128, 128, 128, 0.781);
+    }
+    .loading{
+      display: flex;
+      background-color: whitesmoke;
+      align-items: center;
+      padding: 0px 10px;
+      border-radius: 30px;
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.140);
+        .dot1, .dot2, .dot3 {
+            background: #fff;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin: 4px;
+          }
+          .dot1 {
+            animation: jump 1.3s -0.32s linear infinite;
+            background: gray;
+          }
+          .dot2 {
+              animation: jump 1.3s -0.16s linear infinite;
+              background: gray;
+          }
+          .dot3 {
+              animation: jump 1.3s linear infinite;
+              background: gray;
+          }
+          @keyframes jump {
+            0%, 80%, 100% { 
+            //   -webkit-transform: scale(0);
+            //   transform: scale(0);
+            opacity: 0;
+            } 40% { 
+            //   -webkit-transform: scale(2.0);
+            //   transform: scale(2.0);
+            opacity: 1;
+            }
+          }
+    }
 }

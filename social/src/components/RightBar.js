@@ -25,13 +25,14 @@ export default function RightBar({user}) {
             }).then(response => response.json())
             .then(data => setuserr(data.user));
 
-            await fetch(`http://localhost:8800/api/conversation/${user._id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'token': localStorage.getItem("token")
-                }
-            })
+ 
+                await fetch(`http://localhost:8800/api/conversation/${user._id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'token': localStorage.getItem("token")
+                    }
+                })
         }catch(e){
             console.log(e)
         }
@@ -44,8 +45,8 @@ export default function RightBar({user}) {
         }
         getFriends()
         
-        Object.keys(currentUser).length !== 0 && setfollowed(user? currentUser.followins.includes(user._id) : false)
-    },[user && user._id, currentUser])
+        Object.keys(currentUser).length !== 0 && setfollowed(user? (currentUser.followins?.includes(user._id) || user.followins?.includes(currentUser._id)) : false)
+    },[user, currentUser, navigate])
     const RightbarHome = ()=>{
         return (
             <>

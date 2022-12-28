@@ -5,6 +5,16 @@
   text-decoration: none;
   color: inherit;
 }
+.divider{
+  margin: 0px 10px;
+  height: 1px;
+  background-color: rgb(197, 197, 197);
+}
+.followings__head{
+  margin: 10px;
+  font-weight: 500;
+  font-size: 17px;
+}
 /* Navbar */
 .topbarContainer .topbarLeft .logo{
   margin-left: 20px;
@@ -19,7 +29,12 @@
   height: 60px;
   display: flex;
   box-shadow: 0 0 10px rgba(0,0,0,0.09);
-
+ .logo{
+  img{
+    width: 40px;
+    height: 40px;
+  }
+ }
 }
 .topbarLeft{
   display: flex;
@@ -235,7 +250,18 @@ border-radius: 5px;
 }
 @media screen and (max-width:800px) {
   .sideBar{
-     display: none;
+     position: absolute;
+     top: 60px;
+     left: -300px;
+     transition: all .3s ease-in-out;
+     min-width: 300px;
+     z-index: 99;
+     opacity: 0;
+  }
+  .show__sidebar{
+    left: 0px;
+    opacity: 1;
+    box-shadow: 0 0 8px rgb(0, 0, 0, .14);
   }
   .topbariconItemBars{
     display: inline;
@@ -451,6 +477,7 @@ border-radius: 5px;
   width: 30px;
   height: 30px;
   cursor: pointer;
+  transition: all 0.2s;
 }
 .postBottomLeft img:nth-child(2){
   margin-left: 10px;
